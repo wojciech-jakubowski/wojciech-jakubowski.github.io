@@ -3,7 +3,7 @@ permalink: /about/
 title: "About"
 ---
 
-##Wojciech Jakubowski
+## Wojciech Jakubowski
 
 An experienced software architect and consultant with a strong background in cloud computing (Azure) and C#/.NET development. 
 
