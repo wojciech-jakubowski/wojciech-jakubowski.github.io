@@ -58,11 +58,14 @@ plugins:
 author:
   name   : "Wojciech Jakubowski"
   avatar : "/images/profile/me_v1.png"
-  bio    : "And experienced cloud architect with strong background in sofrware engineering (.net) and consulting. Currently focused on Data plafroms & AI solutions in Azure."
+  bio    : "An experienced software architect and consultant with a strong background in cloud computing (Azure) and .NET development. Currently focused on Azure Data Platform (Data Factory, Databricks, Storage Account/Data Lake, Synapse, SQL, CosmosDB), containerization (Docker, k8s), and serverless (Azure Functions) technologies."
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
       url: "https://wojciech-jakubowski.github.io"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/wojciechjakubowski/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/hellhax"
@@ -72,6 +75,9 @@ author:
 
 footer:
   links:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/wojciechjakubowski/"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/hellhax"
