@@ -112,3 +112,9 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+analytics:
+  provider: "google"
+  google:
+    tracking_id: "283084804"
+    anonymize_ip: false # default
