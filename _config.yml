@@ -114,7 +114,4 @@ tag_archive:
   path: /tags/
 
 analytics:
-  provider: "google-universal"
-  google:
-    tracking_id: "UA-205045699-1"
-    anonymize_ip: false # default
+  provider: "custom"
