@@ -34,21 +34,41 @@ A typical enterprise has a number of IT systems covering various aspects of the 
 
 In order to get some holistic view on the overall state of the enterprise and levarage synergies, companies usually implemented enterprise data warehouses that brough the data from all these systems together, integrated it and presented for BI/reporting. 
 
-![EX](/images/2021-12-12-cdp-intro/traditional-bi.png)
+![Traditional on-prem DW/BI solution](/images/2021-12-12-cdp-intro/traditional-bi.png)
+<p style="text-align: center;">Image 1: Traditional on-prem DW/BI solution</p>
 
-![EX2](/images/profile/2021-12-12-cdp-intro/traditional-bi.png)
+Modern cloud based data platforms do prety much the same, but the scope and use cases are usually much broader and capabities are bigger. Apart from traditional DW/BI, they also enable other scenarios such as Data/AI, Data Hub or some custom data solutions.
 
-Modern cloud based data platforms do prety much the same, but the scope and use cases are usually much broader and capabities are bigger. 
+![Modern cloud based data platform](/images/2021-12-12-cdp-intro/cloud-dp.png)
+<p style="text-align: center;">Image 2: Modern cloud based data platform</p>
+
+Of course these scenarios were and are also doable in traditional on-prem setup. But now its much easier to build and run them in the cloud thanks to its elasticity, scalability and rich ecosystem of managed tools and resouces. You don't need heavy investments in on-prem infrastructure and skills required to run it - cloud vendor (usually) does that for you!
 
 ### Use cases
 
-The typical use cases and scenarios for modern cloud based data platforms are:
+As mentioned above the typical use cases and scenarios for modern cloud-based data platforms are:
 
 #### Analytics
 
-BI & data warehousing is still a thing [inmon link]. But since we live in cloud era and companies are intensively going to the cloud, it often makes sense to migrate a legacy DW as well. Or build a new one using modern, cloud native technologies such as Snowflake or Azure Synapse Analytics.
+BI & data warehousing is still a thing [inmon link]. However, since we live in the cloud era, it often makes sense to migrate a legacy DW as well as a part of some digital transformation or cloud migration endevour. Or build a new one from scratch using modern, cloud native technologies such as Snowflake or Azure Synapse Analytics.
+
+![Cloud based data analytics solution](/images/2021-12-12-cdp-intro/cloud-dw.png)
+<p style="text-align: center;">Image 3: Cloud based data analytics solution</p>
+
+In such solution, the data is first ingested from the source systems into the [data lake](https://databricks.com/discover/data-lakes/introduction), which is a primary storage location and a key component. Then it is processed (deduplicated, cleaned, trasformed) using some ETL tools and loaded in efficent way ([MPP](https://www.sisense.com/glossary/mpp-database/)) into the data warehouse. On top of the data warehouse there are ususally some data marts which are slices of ceratin business areas and act as semantic models that are easy to understand to the business users.
+
+Both data warehouse and data marts can be then queried using some reporting solution like Power BI, Tableau or QlikView. This repoting tool is often referred to as a "frontend" or "BI" part and technically its a 3<sup>rd</sup> party software, but logically it is also belongs to the data platform.
+
+There are also some other approaches emerging like [data lakehouse](https://databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html) but this is the most common design as of now.
 
 #### AI, Data Science & ML
+
+Data science and machine learning are another popular workload that is a good fit for the cloud. Availability of certain storage (HDFS compatible data lake), compute (large VM instances/clusters, Kubernetes, big data tools like Spark) resources and MLOps enablers (Azure ML, multiple API hosting tools like AppServices, Azure Functions, Azure DevOps) make it relatively easy to build and run scalable Data & AI solution.
+
+![Cloud based data & AI solution](/images/2021-12-12-cdp-intro/cloud-ai.png)
+<p style="text-align: center;">Image 4: Cloud based data & AI solution</p>
+
+A typical setup of such solution usally consists of a data lake (the same datlake used by Analytics workload!), some ETL / data processing tools, MLOps environment and Model hosting resources.
 
 #### Use case specfic solutions
 
