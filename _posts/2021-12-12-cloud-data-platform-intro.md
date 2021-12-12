@@ -36,6 +36,8 @@ In order to get some holistic view on the overall state of the enterprise and le
 
 ![EX](/images/2021-12-12-cdp-intro/traditional-bi.png)
 
+![EX2](/images/profile/2021-12-12-cdp-intro/traditional-bi.png)
+
 Modern cloud based data platforms do prety much the same, but the scope and use cases are usually much broader and capabities are bigger. 
 
 ### Use cases
