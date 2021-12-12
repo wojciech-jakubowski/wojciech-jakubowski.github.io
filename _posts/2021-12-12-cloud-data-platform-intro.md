@@ -5,7 +5,7 @@ categories:
   - blog
 ---
 
-### Cloud Data Platform - Intro
+### Intro
 
 Cloud based data platfoms are getting increasingly popular and lots of companies are investing in this area these days. Main reasons:
 
@@ -34,7 +34,7 @@ A typical enterprise has a number of IT systems covering various aspects of the 
 
 In order to get some holistic view on the overall state of the enterprise and levarage synergies, companies usually implemented enterprise data warehouses that brough the data from all these systems together, integrated it and presented for BI/reporting. 
 
-
+![EX](/images/2021-12-12-cdp-intro/traditional-bi.png)
 
 Modern cloud based data platforms do prety much the same, but the scope and use cases are usually much broader and capabities are bigger. 
 
