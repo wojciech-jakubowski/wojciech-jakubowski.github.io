@@ -1,11 +1,6 @@
 ---
-excerpt: "This post should display a **header with an overlay image**, if the theme supports it."
 header:
   overlay_image: /images/2021-12-12-cdp-intro/use-cases.svg
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-  actions:
-    - label: "More Info"
-      url: "https://unsplash.com"
 
 title: "Cloud Data Platfom part 1: intro!"
 excerpt_separator: <!--more-->
