@@ -1,11 +1,10 @@
 ---
-title: "Cloud Data Platfom - part 1 - overview!"
+title: "Cloud Data Platfom part 1: intro!"
 date: 2021-08-22T21:10:00-02:00
 categories:
   - blog
+excerpt_separator: <!--more-->
 ---
-
-### Cloud Data Platform - Intro
 
 Cloud-based data platforms are getting increasingly popular and lots of companies are investing in this area these days.
 
@@ -14,6 +13,8 @@ Cloud-based data platforms are getting increasingly popular and lots of companie
 3. Some companies are embracing advanced analytics, data science & ML.
 
 Modern cloud based data platforms can address all of these needs and can bring tremendous value to the business. 
+
+<!--more-->
 
 ### Idea
 
