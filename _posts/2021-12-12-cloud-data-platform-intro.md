@@ -5,8 +5,6 @@ categories:
   - blog
 ---
 
-### D
-
 In this series of blog posts, I am going to reflect on some technical aspects of modern cloud-native data solutions. I'd like to discuss the market trends, use cases, architectures, technologies, and how to apply them. I'll start with some high-level concepts and then gradually go into lower-level content.
 
 Given my background, I'll focus mostly on the Microsoft Azure stack, but most architectures, patterns & practices apply to other cloud platforms as well.
