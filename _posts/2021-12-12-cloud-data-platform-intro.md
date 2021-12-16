@@ -1,7 +1,4 @@
 ---
-header:
-  overlay_image: /images/2021-12-12-cdp-intro/use-cases.svg
-
 title: "Cloud Data Platfom part 1: intro!"
 excerpt_separator: <!--more-->
 date: 2021-12-12T21:10:00-02:00
