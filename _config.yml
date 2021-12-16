@@ -120,3 +120,5 @@ comments:
   provider: "disqus"
   disqus:
     shortname: "wojciech-jakubowski"
+
+excerpt_separator: <!--more-->

@@ -1,24 +1,29 @@
 ---
 title: "Cloud Data Platfom part 1: intro!"
-date: 2021-08-22T21:10:00-02:00
+date: 2021-12-16T21:10:00-02:00
 categories:
   - blog
-excerpt_separator: <!--more-->
 ---
 
-Cloud-based data platforms are getting increasingly popular and lots of companies are investing in this area these days.
+In this series of blog posts, I am going to reflect on some technical aspects of modern cloud-native data solutions. I'd like to discuss the market trends, use cases, architectures, technologies, and how to apply them. I'll start with some high-level concepts and then gradually go into lower-level content.
+
+Given my background, I'll focus mostly on the Microsoft Azure stack, but most architectures, patterns & practices apply to other cloud platforms as well.
+
+Please enjoy!
+
+<!--more-->
+### Intro
+
+Cloud-based data platforms are getting increasingly popular and lots of companies are investing in this area.
 
 1. Some companies are migrating their existing legacy data warehouse / BI solutions to the cloud as a part of their "digital transformation" efforts.
 2. Some companies start new initiatives in the area of data analytics.
 3. Some companies are embracing advanced analytics, data science & ML.
 
-Modern cloud based data platforms can address all of these needs and can bring tremendous value to the business. 
+Modern cloud-based data platforms can address all of these needs. Designing and implementing a successful solution requires some expertise. I'd like to share and document some of my insights and learnings from past projects.
 
-<!--more-->
+### Plan
 
-### Idea
-
-In this series of blog posts, I'd like to reflect on some aspects of a modern data platform solution. I am not planning to discuss business or organizational matters. Instead, I want to cover the following architectural and technical topics:
 1. Context (enterprise IT landscape, use cases)
 2. Data platform architecture (layers)
 3. Data ingestion layer
@@ -28,8 +33,6 @@ In this series of blog posts, I'd like to reflect on some aspects of a modern da
 7. Observability, reconciliation, monitoring, alerting
 8. DevOps practices (Infra as code, CI/CD)
 9. Many many more ... :)
-
-Given my background, I'll focus mostly on the Microsoft Azure stack, but most architectures, patterns & practices apply to other cloud platforms as well.
 
 ### Context
 
