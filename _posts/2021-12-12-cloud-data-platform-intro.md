@@ -11,6 +11,8 @@ Given my background, I'll focus mostly on the Microsoft Azure stack, but most ar
 
 Please enjoy!
 
+<!--more-->
+
 ### Intro
 
 Cloud-based data platforms are getting increasingly popular and lots of companies are investing in this area.
