@@ -1,9 +1,11 @@
 ---
 title: "Cloud Data Platfom part 1: intro!"
-date: 2021-12-16T21:10:00-02:00
+date: 2021-12-12T21:10:00-02:00
 categories:
   - blog
 ---
+
+### D
 
 In this series of blog posts, I am going to reflect on some technical aspects of modern cloud-native data solutions. I'd like to discuss the market trends, use cases, architectures, technologies, and how to apply them. I'll start with some high-level concepts and then gradually go into lower-level content.
 
