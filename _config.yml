@@ -58,7 +58,7 @@ plugins:
 
 author:
   name   : "Wojciech Jakubowski"
-  avatar : "/images/profile/me_v1.png"
+  avatar : "/assets/images/profile/me_v1.png"
   bio    : "Cloud Data Architect (Azure)"
   location  : "Poland - Cracow"
   links:
