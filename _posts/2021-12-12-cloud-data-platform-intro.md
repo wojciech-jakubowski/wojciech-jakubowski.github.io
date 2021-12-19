@@ -5,7 +5,7 @@ date: 2021-12-12T21:10:00-02:00
 header:
     overlay_image: /assets/images/header/header_image.jpg
     show_overlay_excerpt: false
-    overlay_filter: rgba(255, 0, 0, 0.5)
+    overlay_filter: rgba(0, 0, 0, 0.75)
 categories:
   - blog
   - cloud
