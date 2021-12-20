@@ -5,8 +5,6 @@ header:
     overlay_image: /assets/images/header/header_image.jpg
     show_overlay_excerpt: false
     overlay_filter: rgba(0, 0, 0, 0.20)
-categories:
-  - blog
 ---
 
 Welcome on my blog! I am going to write mostly about cloud architecture and software engineering, but might touch on other IT-related topics too. Please enjoy :)

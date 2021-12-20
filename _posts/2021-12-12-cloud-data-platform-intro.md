@@ -6,9 +6,6 @@ header:
     overlay_image: /assets/images/header/header_image.jpg
     show_overlay_excerpt: false
     overlay_filter: rgba(0, 0, 0, 0.20)
-categories:
-  - blog
-  - cloud
 ---
 
 In this series of blog posts, I am going to reflect on some technical aspects of modern cloud-native data solutions. I'd like to discuss the market trends, use cases, architectures, technologies, and how to apply them. I'll start with some high-level concepts and then gradually go into lower-level content.
