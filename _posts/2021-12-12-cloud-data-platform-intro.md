@@ -29,10 +29,10 @@ Modern cloud-based data platforms can address all of these needs. Designing and 
 ### Plan
 
 1. Context (enterprise IT landscape, use cases)
-2. Data platform architecture (layers)
+2. High level architecture
 3. Data ingestion layer
 4. Storage and processing layer
-5. Consumption layer
+5. Semantic and consumption layers
 6. Underlying cloud infrastructure (technologies, resources, networking, security)
 7. Observability, reconciliation, monitoring, alerting
 8. DevOps practices (Infra as code, CI/CD)
