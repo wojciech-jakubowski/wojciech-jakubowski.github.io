@@ -7,66 +7,109 @@ header:
     overlay_filter: rgba(0, 0, 0, 0.20)
 ---
 
-As discussed in the previous post, the purpose of the modern, cloud-based data platform is to gather data from various source systems, process and serve it to the downstream systems in multiple ways. 
+As discussed previously, the main purpose of a modern, cloud-based data platform is to gather data from various source systems, process and serve it to the downstream consumers. 
 
-Let's now look into what happens inside and revisit some of the common architecture patterns for modern, cloud-based data platforms - especially the concept of layers and data flows.
+Let's now look into what happens inside and revisit some of the common architecture patterns for modern, data platforms - especially the concept of layers and data flows.
 
 #### Architecture
 
-A data platform usually consists of a set of layers that play specific roles, as well as some cross-cutting concerns that span across all the layers.
+A data platform typically consists of a set of layers that play specific roles in data processing, as well as some cross-cutting concerns that span across all the layers.
 
-![Traditional on-prem DW/BI solution](/assets/images/2021-12-20-cdp-arch/high-level.svg)
+![High level architecture](/assets/images/2021-12-20-cdp-arch/high-level.svg)
 <p style="text-align: center;">Image 1: High level architecture</p>
 
 Typically, the layers are:
 
-- **Sources** - all potential source systems regardless of the underlying technology (files, SQL DBs, message queues, streams), data ingestion method (batch, stream), or load model (pull or push).
+- *Sources* - all potential source systems regardless of the underlying technology (files, SQL DBs, message queues, streams), data ingestion method (batch, stream), or load model (pull or push).
 
-- **Data Ingestion layer** - represents all potential components and technologies that can be used to reliably and efficiently move data from the left (sources) to the right (storage layer).
+- *Ingestion layer* - represents all potential components and technologies that can be used to reliably and efficiently move data from the left (sources) to the right (storage layer).
 
-- **Storage and transformation layer** - usually implemented by a data lake and a set of components and technologies that allow conducting massive data transformations (ETL) in an efficient manner.
+- *Storage and transformation layer* - usually implemented by a data lake and a set of components and technologies that allow conducting massive data transformations (ETL) efficently.
 
-- **Semantic layer** - a place where carefully prepared and modeled data is stored, ready to use by end-users. Depending on the use case, this might be a data warehouse with accompanying data marts/models, a ML Ops environment (ML training data sets and pipelines), or any other data-hub-like use-case oriented databases or storage in general.
+- *Semantic layer* - a place where carefully prepared and modeled data is stored, ready to use by end-users. Depending on the use case, this might be a data warehouse with accompanying data marts/models, a ML Ops environment (ML training data sets and pipelines), or any other data-hub-like use-case oriented databases or storage in general.
 
-- **Data consumption layer** - represents all potential technologies that can be used to make actual use of the data handled by the data platform. This typically means BI/reporting tools and dashboards, APIs, outbound data streams, and other data destinations (SFTP, email, other storage, custom data exporters).
+- *Consumption layer* - represents all potential technologies that can be used to make actual use of the data handled by the data platform. This typically means BI/reporting tools and dashboards, APIs, outbound data streams, and other data destinations (SFTP, email, other storage, custom data exporters).
 
-- **Consumers** - all potential users of the curated prepared data as well as destination systems (internal and external)..
+- *Consumers* - all potential users of the curated prepared data as well as destination systems (internal and external).
 
 Cross-cutting concerns:
 
-- **Orchestration** - all potential components responsible for coordinating all the processes that take place on the platform. So, things like data ingestion (loading data from source systems), data transformation and storage, ML Ops, maintenance tasks, etc are orchestrated from here - which is why it spans through all the layers.
+- *Orchestration* - all potential components responsible for coordinating all the processes that take place on the platform. So, things like data ingestion (loading data from source systems), data transformation and storage, ML Ops, maintenance tasks, etc are orchestrated from here - which is why it spans through all the layers.
 
-- **Security, Identity & access control** - all the components responsible for securing and controlling access to the platform. Typically these are things like IAM solutions, secret vaults, virtual networks, and all kinds of advanced threat protection tools.
+- *Security, Identity & access control* - all the components responsible for securing and controlling access to the platform. Typically these are things like IAM solutions, secret vaults, virtual networks, and all kinds of advanced threat protection tools.
 
-- **Monitoring & Alerting** - represents tools and technologies used for monitoring (collecting, storing, and analyzing logs and metrics) and alerting based on predefined rules and conditions.
+- *Monitoring & Alerting* - represents tools and technologies used for monitoring (collecting, storing, and analyzing logs and metrics) and alerting based on predefined rules and conditions.
 
-- **DevOps** - tools responsible for delivering CI/CI, infrastructure as code, and automation capabilities.
+- *DevOps* - tools and practices responsible for delivering CI/CI, infrastructure as code, and automation capabilities.
 
 
-#### Data flow
+#### Data pipelines
 
-Usually, data is moved between the layers, changing its representation (formats), quality, structure (schema, joins, aggregations), etc as follows:
+Usually, data is moved between the layers, changing its representation (formats), quality, structure (schema, joins), quantity (filters, aggregations), etc as follows:
 
-1. Data is ingested from the sources by components from the ingestion layer and then stored in the storage layer. There are multiple ways this can happen: data can be either pulled or pushed in batches, or processed as an infinite, continuous stream of messages.
+1. Data is ingested from the source systems by components from the ingestion layer and stored in the storage layer. There are multiple ways this can be done: data can be either pulled or pushed in batches, or processed as an infinite, continuous stream of messages.
 
-2. The storage layer is usually comprised of internal layers sometimes called raw, cleaned, prepared (or bronze, silver, gold [as promoted by Databricks](https://databricks.com/blog/2019/08/14/productionizing-machine-learning-with-delta-lake.html)). Those layers represent different levels of data quality and reusability (more on that in future). Data is moved and transformed through these internal layers by some ETL/ELT tools. 
+2. The storage layer is usually comprised of internal layers sometimes called raw, cleaned, prepared (or bronze, silver, gold [as promoted by Databricks](https://databricks.com/blog/2019/08/14/productionizing-machine-learning-with-delta-lake.html)). Those layers represent different levels of data quality and reusability (more on that in the future). Data is moved and transformed through these internal layers by some ETL/ELT data processing tools. 
 
-3. The data is then loaded into a semantic layer which is carefully designed, client-facing representation/model of the specific business domains or a use-case-oriented data solution.
+3. The data is then loaded into a semantic layer which is carefully designed, client-facing representation (model) of the specific business domains or a use-case-oriented data solution.
 
 4. Finally, the data is exposed to end-users by components from the consumption layer such as BI tools (PowerBI), APIs, apps, message queues, etc.
 
-#### Lambda & Kappa
+A process that implements the flow described above (steps 1-3) is called a *data pipeline*. It can be implemented using many different technologies, it is usually a combination of an orchestrator and ETL tool. 
 
-It is also worth mentioning two popular architecture styles for data platforms: lambda & kappa.  
+#### Processing types
+
+Different use cases may have different requirements regarding the amount & frequency of data ingested and accepted latency for getting results.
+
+##### Batch
+
+There are cases when it is ok to pull (or receive) the big portion of data from the source system, process it overnight, and prepare for the next morning reporting/consumption. This is called *batch processing*. 
+
+![Batch processing](/assets/images/2021-12-20-cdp-arch/batch.svg)
+<p style="text-align: center;">Image 2: Batch processing</p>
+
+The orchestrator plays the main role here. It triggers the load process based on some defined schedule and sequentially orchestrates ETL components to do their tasks (extraction, transformation, load). Data is usually processed in bigger chunks (hundreds of megabytes to terabytes) based on a defined schedule. 
+
+This is simple and efficient, but there is always some lag in results between data loads. The cost is also relatively low because data processing components (which are usually the most expensive) only run during the data load and remain inactive the rest of the time.
+
+##### Stream
+
+But there are also cases where we have data incoming all the time as a stream of events and end-users want to get processing results as soon as possible. This is especially evident in IoT scenarios where devices are generating massive amounts of data each hour. These results need to be constantly processed and shared with consumers quickly (for instance for failure or anomaly detection). This approach is called *stream processing*.
+
+![Stream processing](/assets/images/2021-12-20-cdp-arch/stream.svg)
+<p style="text-align: center;">Image 3: Stream processing</p>
+
+In this approach, the data continuously and automatically flows through all the layers of the platform as an infinite stream of small events. The results of processing are almost immediately available.
+
+This approach also has some drawbacks: 
+- Not all data sources can emit data as a stream of events.
+- There are challenges with storing millions (or billions) of small files as well as handling updates in the data lake efficiently, as HDFS storage systems mostly assume data immutability (although this is now solved by [delta lake](https://delta.io/) - more on that later).
+ - It requires streaming processors to run all the time, which is usually expensive.
+
+##### Lambda architecture
+
+To accommodate these two approaches, an architecture pattern called [Lambda](https://databricks.com/glossary/lambda-architecture) is commonly used. It combines both processing modes in one solution by splitting data processing into two paths: batch + serving layer (for batch mode) and speed layer (for streaming mode).
+
+This pattern is reliable but it comes with a certain complexity as you need to maintain and operate both paths usually with two different codebases.
+
+##### Kappa architecture
+
+An attempt to get rid of this duality is called Kappa architecture. In this pattern, the assumption is that all data is ingested and processed, and indefinitely stored as a stream in a streaming system like Apache Kafka. Consumers can subscribe to these streams. To get some historic information, all events need to be "replayed" from the streaming system. There is no data lake for long-term storage.
  
+##### Delta architecture
+
+Delta architecture can be considered an extension of Kappa that brings it together with long-term storage in a data lake. The data is still ingested and processed as a stream of events. Hower thanks to delta technology, it is possible to efficiently store and update that type of incoming data in a data lake.
+
+The limitation of this architecture can be only used for platforms that use Apache Spark since Delta writes are currently only possible with this technology.
+
 #### Azure 
 
 Data, Analytics & AI tech stack is where Azure really shines. The variety of available offerings is very rich... and sometimes overwhelming. [PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/) or PaaS-like resources usually bring the most value as they are easy to use and reliable. On the other hand, [IaaS](https://azure.microsoft.com/en-us/overview/what-is-iaas/) - especially networking - is a necessary foundation for secure connectivity and storage.
 
 The following diagram shows how the abstract architecture described above translates into Azure technology stack.
 
-![Traditional on-prem DW/BI solution](/assets/images/2021-12-20-cdp-arch/tech-stack.svg)
-<p style="text-align: center;">Image 2: Azure Data Platform tech stack</p>
+![Azure Tech stack](/assets/images/2021-12-20-cdp-arch/tech-stack.svg)
+<p style="text-align: center;">Image 7: Azure Data Platform tech stack</p>
 
 #### Follow up
-In the next few posts I will go through each of these layers and discuss in detail how and when these Azure resources can be used.
+In the next few posts, I will go through each of these layers and discuss in detail when and how those Azure resources can be used.
