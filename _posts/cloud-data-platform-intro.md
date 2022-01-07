@@ -44,7 +44,7 @@ A typical enterprise has many IT systems covering various aspects of the busines
 
 To get some holistic view on the overall state of the enterprise and leverage synergies, companies usually implemented enterprise data warehouses that brought the data from all/most of these systems together, integrated it, and presented for BI/reporting.
 
-![Traditional on-prem DW/BI solution](/assets/images/2021-12-12-cdp-intro/traditional-bi.svg)
+![Traditional on-prem DW/BI solution](/assets/images/cdp-intro/traditional-bi.svg)
 <p style="text-align: center;">Image 1: Traditional on-prem DW / BI solution</p>
 
 Modern cloud-based data platforms do pretty much the same (integrating data from various sources and delivering value from that data), but the scope and use cases are usually much broader and capabilities bigger. Apart from typical DW / BI workloads, they also enable other scenarios such as AI (data science & ML) or [data hub](https://towardsdatascience.com/what-is-a-data-hub-41d2ac34c270).
@@ -53,7 +53,7 @@ The central part of the data platform is usually a [data lake](https://databrick
 
 The high-level overview of this concept is presented on a diagram below:
 
-![Modern cloud based data platform](/assets/images/2021-12-12-cdp-intro/use-cases.svg)
+![Modern cloud based data platform](/assets/images/cdp-intro/use-cases.svg)
 <p style="text-align: center;">Image 2: Modern cloud-based data platform</p>
 
 Of course, the aforementioned scenarios were and still are also doable in a traditional on-prem setup. But now it's much easier to build and run them in the cloud thanks to its elasticity, scalability, and rich ecosystem of managed tools and resources. You don't need heavy investments in on-prem infrastructure and skills to run it - the cloud vendor (usually) does that for you!
@@ -67,7 +67,7 @@ Depending on business needs, a typical data platform can focus on one primary us
 
 Apparently, data warehousing [is still a thing](https://www.linkedin.com/pulse/data-lake-architecture-bill-inmon/). And, since we live in the cloud era, it often makes sense to migrate a legacy DW as a part of some digital transformation or cloud migration endeavor. Or build a new one from scratch using modern, cloud-native technologies such as Snowflake or Azure Synapse Analytics.
 
-![Cloud based data analytics solution](/assets/images/2021-12-12-cdp-intro/analytics.svg)
+![Cloud based data analytics solution](/assets/images/cdp-intro/analytics.svg)
 <p style="text-align: center;">Image 3: Cloud-based data analytics solution</p>
 
 In such a solution, the data is usually first ingested from the source systems into the data lake. Then it is processed (deduplicated, cleaned, transformed) using some ETL tools and efficiently ([MPP](https://www.sisense.com/glossary/mpp-database/)) loaded into the data warehouse. On top of the data warehouse, there are usually some data marts that are focused on certain business areas and act as semantic models easy to understand to the business users.
@@ -80,7 +80,7 @@ There are also some other emerging approaches like [data lakehouse](https://data
 
 AI (data science & machine learning) is another popular workload that is a good fit for the cloud. Availability of certain, managed storage (HDFS compatible data lake), compute (large VM instances/clusters, Kubernetes, big data tools like Spark) technologies and enablers (Azure ML, Azure DevOps, API hosting options like App Services, Azure Functions) make it relatively easy to build and run scalable Data & AI solution in the cloud.
 
-![Cloud based data & AI solution](/assets/images/2021-12-12-cdp-intro/ai.svg)
+![Cloud based data & AI solution](/assets/images/cdp-intro/ai.svg)
 <p style="text-align: center;">Image 4: Cloud-based data & AI solution</p>
 
 In a typical setup, the solution usually consists of a data lake, some ETL / data processing components, MLOps environment, and model hosting resources. 
@@ -93,7 +93,7 @@ These models are later operationalized using machine learning pipelines for auto
 
 The last use case I wanted to mention is focused on conducting data integration and mediation between various IT systems across the enterprise.
 
-![Cloud based data hub solution](/assets/images/2021-12-12-cdp-intro/data-hub.svg)
+![Cloud based data hub solution](/assets/images/cdp-intro/data-hub.svg)
 <p style="text-align: center;">Image 5: Cloud-based data hub solution</p>
 
 In this scenario, the data is ingested from various sources in real-time or batch mode. It is cleaned, integrated, transformed, sometimes stored using certain data models inside the data lake.
@@ -104,7 +104,7 @@ Lastly, the data is then served using various techniques (like APIs, message que
 
 **Small disclaimer**: The "data hub" term is often used as a name for off-the-shelf products from various software vendors. Each vendor interprets and applies this term independently based on their own interpretation. So it is totally likely (and also OK) to find a different architecture for it. However, the <ins>main idea</ins> is always the same - integrating data from various sources, processing it, and making it available for various consumers.
 <p align="center">
-  <img src="/assets/images/2021-12-12-cdp-intro/data-hub-abstract.svg" />
+  <img src="/assets/images/cdp-intro/data-hub-abstract.svg" />
 </p>
 <p style="text-align: center;">Image 5: An abstract representation the data hub concept</p>
 
