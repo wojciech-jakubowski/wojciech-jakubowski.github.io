@@ -20,27 +20,27 @@ A data platform typically consists of a set of layers that play specific roles i
 
 Typically, the layers are:
 
-- *Sources* - all potential source systems regardless of the underlying technology (files, SQL DBs, message queues, streams), data ingestion method (batch, stream), or load model (pull or push).
+- *Sources* - all potential source systems regardless of the underlying technology (files, SQL DBs, message queues, streams), data ingestion method (batch or stream), or load model (pull or push).
 
 - *Ingestion layer* - represents all potential components and technologies that can be used to reliably and efficiently move data from the left (sources) to the right (storage layer).
 
-- *Storage and transformation layer* - usually implemented by a data lake and a set of components and technologies that allow conducting massive data transformations (ETL) efficently.
+- *Storage and transformation layer* - usually implemented by a data lake and a set of components and technologies that can do massive data transformations (ETL) efficently.
 
-- *Semantic layer* - a place where carefully prepared and modeled data is stored, ready to use by end-users. Depending on the use case, this might be a data warehouse with accompanying data marts/models, a ML Ops environment (ML training data sets and pipelines), or any other data-hub-like use-case oriented databases or storage in general.
+- *Semantic layer* - a place where carefully prepared and modeled data is stored, ready to use by the end-users. Depending on the use case, this might be a data warehouse with accompanying data marts/models, a ML Ops environment (ML training data sets and pipelines), or any other data-hub-like use-case oriented databases or storage in general.
 
-- *Consumption layer* - also called *serving layer*, represents all potential technologies that can be used to make actual use of the data handled by the data platform. This typically means BI/reporting tools and dashboards, APIs, outbound data streams, and other data destinations (SFTP, email, other storage, custom data exporters).
+- *Consumption layer* - also called *serving layer*, represents all potential technologies that can be used to make actual use of the data. This typically means BI/reporting tools, dashboards, APIs, outbound data streams or message queues, and other data destinations (SFTP, email, 3rd party storage, custom data exporters, etc).
 
 - *Consumers* - all potential users of the curated prepared data as well as destination systems (internal and external).
 
 Cross-cutting concerns:
 
-- *Orchestration* - all potential components responsible for coordinating all the processes that take place on the platform. So, things like data ingestion (loading data from source systems), data transformation and storage, ML Ops, maintenance tasks, etc are orchestrated from here - which is why it spans through all the layers.
+- *Orchestration* - all potential components responsible for scheduling and coordinating all the processes that take place on the platform. So, things like data ingestion (loading data from source systems), data transformation and storage, ML Ops, maintenance tasks, etc are orchestrated from here - which is why it spans through all the layers.
 
 - *Security, Identity & access control* - all the components responsible for securing and controlling access to the platform. Typically these are things like IAM solutions, secret vaults, virtual networks, and all kinds of advanced threat protection tools.
 
 - *Monitoring & Alerting* - represents tools and technologies used for monitoring (collecting, storing, and analyzing logs and metrics) and alerting based on predefined rules and conditions.
 
-- *DevOps* - tools and practices responsible for delivering CI/CI, infrastructure as code, and automation capabilities.
+- *DevOps* - tools and processes responsible for delivering CI/CI, infrastructure as code, and automation capabilities.
 
 
 #### Data pipelines
