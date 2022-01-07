@@ -72,7 +72,7 @@ The orchestrator plays a major role here. It triggers the load process based on 
 
 This is simple and efficient, but there is always some lag in results between data loads. The cost is also relatively low because data processing components (which are usually the most expensive) only run during the load and remain inactive the rest of the time.
 
-##### Stream
+##### Streaming
 
 There are also cases where we have data incoming all the time as a stream of events and end-users want to get processing results as soon as possible. This is especially evident in IoT scenarios where devices are generating massive amounts of data each hour. These results need to be constantly processed and shared with consumers immediately (for instance for failure or anomaly detection). This approach is called *stream processing*.
 
