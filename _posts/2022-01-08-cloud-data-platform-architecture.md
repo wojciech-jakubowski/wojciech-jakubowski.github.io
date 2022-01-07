@@ -1,5 +1,5 @@
 ---
-title: "Cloud Data Platfom architecture"
+title: "Cloud Data Platfom part 2: architecture!"
 date: 2022-01-08T21:10:00-02:00
 header:
     overlay_image: /assets/images/header/header_image.jpg
