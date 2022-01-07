@@ -45,9 +45,9 @@ Cross-cutting concerns:
 
 #### Data pipelines
 
-Usually, data is moved between the layers, changing its representation (formats), quality, structure (schema, joins), quantity (filters, aggregations), etc as follows:
+Usually, data is moved between layers, changing its representation (formats), quality, structure (schema, joins), quantity (filters, aggregations), etc. An example of such process can be:
 
-1. Data is ingested from the source systems by components from the ingestion layer and stored in the storage layer. There are multiple ways this can be done: data can be either pulled or pushed in batches, or processed as an infinite, continuous stream of messages.
+1. Data is ingested from the source system by some components from the ingestion layer and stored in the storage layer. There are multiple ways this can be done: data can be either pulled or pushed in batches, or processed as an infinite, continuous stream of messages.
 
 2. The storage layer is usually comprised of internal layers sometimes called raw, cleaned, prepared (or bronze, silver, gold [as promoted by Databricks](https://databricks.com/blog/2019/08/14/productionizing-machine-learning-with-delta-lake.html)). Those layers represent different levels of data quality and reusability (more on that in the future). Data is moved and transformed through these internal layers by some ETL/ELT data processing tools. 
 
