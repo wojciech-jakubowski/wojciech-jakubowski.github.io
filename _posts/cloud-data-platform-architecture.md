@@ -11,7 +11,7 @@ As discussed previously, the main purpose of a modern, cloud-based data platform
 
 Let's now look into what happens inside and revisit some of the common architecture patterns for modern, data platforms - especially the concept of layers and data flows.
 
-#### Architecture
+#### High level architecture
 
 A data platform typically consists of a set of layers that play specific roles in data processing, as well as some cross-cutting concerns that span across all the layers.
 
@@ -97,7 +97,10 @@ This pattern is robust but comes with a certain complexity as you need to mainta
 
 ##### Kappa architecture
 
-An attempt to get rid of this duality is called Kappa architecture. In this pattern, the assumption is that all data is ingested and processed, and indefinitely stored as a stream in a streaming system like Apache Kafka. Consumers can subscribe to these streams. To get some historic information, all events need to be "replayed" from the streaming system. There is no data lake for long-term storage.
+An attempt to get rid of this duality is called Kappa architecture. In this pattern, the assumption is that all data is ingested, processed, and indefinitely stored as a data stream inside a streaming platform like Apache Kafka. Consumers can subscribe to these streams on demand. To get some historic information, all events need to be "replayed" from the streaming system. There is no data lake for long-term storage.
+
+![Kappa architecture](/assets/images/cdp-arch/kappa.svg)
+<p style="text-align: center;">Image 5: Kappa architecture</p>
  
 ##### Delta architecture
 
@@ -110,7 +113,7 @@ The limitation of this architecture can be only used for platforms that use Apac
 
 In real life, you rarely end up with *extact* implementation of one of those architectures. Almost always there are some modifications to match the actual needs and objectives of the final design.
 
-#### Azure 
+#### Azure Data Platform
 
 Data, Analytics & AI tech stack is where Azure really shines. The variety of available offerings is very rich... and sometimes overwhelming. [PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/) or PaaS-like resources usually bring the most value as they are easy to use and reliable. On the other hand, [IaaS](https://azure.microsoft.com/en-us/overview/what-is-iaas/) - especially networking - is a necessary foundation for secure connectivity and storage.
 
