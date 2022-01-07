@@ -49,13 +49,13 @@ Usually, data is moved between layers, changing its representation (formats), qu
 
 1. Data is ingested from the source system by some components from the ingestion layer and stored in the storage layer. There are multiple ways this can be done: data can be either pulled or pushed in batches, or processed as an infinite, continuous stream of messages.
 
-2. The storage layer is usually comprised of internal layers sometimes called raw, cleaned, prepared (or bronze, silver, gold [as promoted by Databricks](https://databricks.com/blog/2019/08/14/productionizing-machine-learning-with-delta-lake.html)). Those layers represent different levels of data quality and reusability (more on that in the future). Data is moved and transformed through these internal layers by some ETL/ELT data processing tools. 
+2. The storage layer is usually comprised of internal layers sometimes called raw, cleaned, prepared (or bronze, silver, gold [as promoted by Databricks](https://databricks.com/blog/2019/08/14/productionizing-machine-learning-with-delta-lake.html)). Those layers represent different levels of data quality and reusability (more on that in the future). Data is moved and transformed through these internal layers by some ETL/ELT processing tools. 
 
 3. The data is then loaded into a semantic layer which is carefully designed, client-facing representation (model) of the specific business domains or a use-case-oriented data solution.
 
 4. Finally, the data is exposed to end-users by components from the consumption layer such as BI tools (PowerBI), APIs, apps, message queues, etc.
 
-A process that implements the flow described above (steps 1-3) is called a *data pipeline*. It can be implemented using many different technologies, it is usually a combination of an orchestrator and ETL tool. 
+A process that implements the flow described above (steps 1-3) is called a *data pipeline*. It can be implemented using many different technologies. Usually, it is a combination of an orchestrator and an ETL tool or a stream processing tool. 
 
 #### Processing types
 
@@ -63,23 +63,23 @@ Different use cases may have different requirements regarding the amount & frequ
 
 ##### Batch
 
-There are cases when it is ok to pull (or receive) the big portion of data from the source system, process it overnight, and prepare for the next morning reporting/consumption. This is called *batch processing*. 
+There are cases when it is ok to pull (or receive) a big portion of data from the source system, process it overnight, and prepare for the next morning reporting/consumption. This is called *batch processing*. 
 
 ![Batch processing](/assets/images/cdp-arch/batch.svg)
 <p style="text-align: center;">Image 2: Batch processing</p>
 
-The orchestrator plays the main role here. It triggers the load process based on some defined schedule and sequentially orchestrates ETL components to do their tasks (extraction, transformation, load). Data is usually processed in bigger chunks (hundreds of megabytes to terabytes) based on a defined schedule. 
+The orchestrator plays a major role here. It triggers the load process based on some defined schedule and sequentially orchestrates ETL components to do their tasks (extraction, transformation, load). Data is usually processed in bigger chunks (hundreds of megabytes to terabytes). 
 
-This is simple and efficient, but there is always some lag in results between data loads. The cost is also relatively low because data processing components (which are usually the most expensive) only run during the data load and remain inactive the rest of the time.
+This is simple and efficient, but there is always some lag in results between data loads. The cost is also relatively low because data processing components (which are usually the most expensive) only run during the load and remain inactive the rest of the time.
 
 ##### Stream
 
-But there are also cases where we have data incoming all the time as a stream of events and end-users want to get processing results as soon as possible. This is especially evident in IoT scenarios where devices are generating massive amounts of data each hour. These results need to be constantly processed and shared with consumers quickly (for instance for failure or anomaly detection). This approach is called *stream processing*.
+There are also cases where we have data incoming all the time as a stream of events and end-users want to get processing results as soon as possible. This is especially evident in IoT scenarios where devices are generating massive amounts of data each hour. These results need to be constantly processed and shared with consumers immediately (for instance for failure or anomaly detection). This approach is called *stream processing*.
 
 ![Stream processing](/assets/images/cdp-arch/stream.svg)
 <p style="text-align: center;">Image 3: Stream processing</p>
 
-In this approach, the data continuously and automatically flows through all the layers of the platform as an infinite stream of small events. The results of processing are almost immediately available.
+In this approach, the data continuously and automatically flows through all the layers of the platform as an infinite stream of small events. The results of processing are almost immediately available to end-users. Typically, the data is also stored in a data lake for some additional future processing or historization.
 
 This approach also has some drawbacks: 
 - Not all data sources can emit data as a stream of events.
@@ -104,20 +104,20 @@ An attempt to get rid of this duality is called Kappa architecture. In this patt
  
 ##### Delta architecture
 
-Delta architecture can be considered an mix of Kappa with a data lake long term storage. It become possible with introduction of delta technology by Databricks/Apache Spark. Instead of storing data inside streaming system (which is not really handy and optimized for long term storage), the data is stored inside delta tables inside data lake. Delta tables also support streaming, updates and ACID transactions.
+Delta architecture can be considered a mix of Kappa with a data lake long-term storage. It became possible with the introduction of Delta technology by Databricks. Instead of storing data inside the streaming system (which is not really handy and optimized for long-term storage), the data is stored in delta tables inside the data lake. Delta tables also support streaming, updates, ACID transactions, and time-travel.
 
 ![Lambda architecture](/assets/images/cdp-arch/delta.svg)
 <p style="text-align: center;">Image 6: Delta architecture</p>
 
-The limitation of this architecture can be only used for platforms that use Apache Spark since Delta writes are currently only possible with this technology.
+The limitation of this architecture is that it can be only used for platforms that use Apache Spark (newer versions) since delta writes are currently only possible with this technology. 
 
-In real life, you rarely end up with *extact* implementation of one of those architectures. Almost always there are some modifications to match the actual needs and objectives of the final design.
+In real life, you rarely end up with an *exact* implementation of one of those architecture patterns. Almost always there are some modifications to match the actual needs and objectives of the final design.
 
 #### Azure Data Platform
 
-Data, Analytics & AI tech stack is where Azure really shines. The variety of available offerings is very rich... and sometimes overwhelming. [PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/) or PaaS-like resources usually bring the most value as they are easy to use and reliable. On the other hand, [IaaS](https://azure.microsoft.com/en-us/overview/what-is-iaas/) - especially networking - is a necessary foundation for secure connectivity and storage.
+Data, Analytics & AI tech stack is where Azure shines. The variety of available offerings is very rich... and sometimes overwhelming. [PaaS](https://azure.microsoft.com/en-us/overview/what-is-paas/) or PaaS-like resources usually bring the most value as they are easy to use and reliable. On the other hand, [IaaS](https://azure.microsoft.com/en-us/overview/what-is-iaas/) - especially networking - is a necessary foundation for secure connectivity and storage.
 
-The following diagram shows how the abstract architecture described above translates into Azure technology stack.
+The diagram below shows how the abstract architecture described above translates into the Azure technology stack.
 
 ![Azure Tech stack](/assets/images/cdp-arch/tech-stack.svg)
 <p style="text-align: center;">Image 7: Azure Data Platform tech stack</p>
